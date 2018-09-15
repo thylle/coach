@@ -1,0 +1,16 @@
+{
+  "links": {
+    "home": "Home",
+    "about": "About",
+    "english": "English version",
+    "french": "French version"
+  },
+  "steps": {
+    "step1": "Get started",
+    "step1Desc": "Join thousands of iron lifting souls and reach your goals with a easy workout tracker",
+    "step2": "We found your program",
+    "step2Desc": "... but it seems we need a little more from you",
+    "step3": "Your programs",
+    "step3Desc": "The programs you and your coach made is right here"
+  }
+}

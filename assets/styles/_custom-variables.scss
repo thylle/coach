@@ -1,0 +1,63 @@
+$default-spacing:                       40px;
+$header-nav-height:                     60px;
+$header-height:                         220px;
+$nav-bar-height:                        65px;
+$icon-size:                             22px;
+$border-radius:                         5px;
+
+$box-shadow:                            0 14px 28px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.05);
+$box-shadow-light:                      0 7px 20px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.05);
+
+
+$white:                                 #fff;
+$gray-100:                              #f8f9fa;
+$gray-200:                              #e9ecef;
+$gray-300:                              #dee2e6;
+$gray-400:                              #ced4da;
+$gray-500:                              #adb5bd;
+$gray-600:                              #6c757d;
+$gray-700:                              #495057;
+$gray-800:                              #343a40;
+$gray-900:                              #212529;
+$black:                                 #1E0C10;
+
+$border-gray:                           $gray-400;
+$border-gray-light:                     $gray-200;
+
+$primary:                               #031d5b;
+$primary-bg-text-color:                 #fff;
+
+$secondary:                             #f63854;
+$secondary-light:                       lighten($secondary, 30%);
+$secondary-bg-text-color:               #fff;
+$secondary-dark:                        #e7ebfa;
+$secondary-dark-bg-text-color:          rgba(255,255,255,0.8);
+
+$body-bg:                               $white;
+$body-color:                            $gray-600;
+$body-color-muted:                      $gray-900;
+$link-color:                            $secondary;
+$input-placeholder-color:               $gray-500;
+$input-border-color:                    $gray-400 !default;
+
+
+$font-family-base:                      'Nunito', sans-serif;;
+
+$font-size-base:                        1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg:                          ($font-size-base * 1.25) !default;
+$font-size-sm:                          ($font-size-base * .875) !default;
+
+$h1-font-size:                          $font-size-base * 2.5 !default;
+$h2-font-size:                          $font-size-base * 2 !default;
+$h3-font-size:                          $font-size-base * 1.75 !default;
+$h4-font-size:                          $font-size-base * 1.5 !default;
+$h5-font-size:                          $font-size-base * 1.25 !default;
+$h6-font-size:                          $font-size-base !default;
+
+$headings-font-weight:                  700 !default;
+$headings-line-height:                  1.2 !default;
+$headings-color:                        $black !default;
+
+$grid-gutter-width:                     $default-spacing !default;
+
+

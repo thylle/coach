@@ -1,0 +1,16 @@
+{
+  "links": {
+    "home": "hjem",
+    "about": "om os",
+    "english": "English version",
+    "french": "Dansk version"
+  },
+  "home": {
+    "title": "velkommen",
+    "introduction": "Introduktion"
+  },
+  "about": {
+    "title": "om os",
+    "introduction": "This page is made to give you more informations."
+  }
+}

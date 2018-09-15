@@ -1,0 +1,39 @@
+
+.add-exercise{
+    &__container{
+
+
+        .el-input-group__prepend{
+            width: 130px;
+        }
+    }
+}
+
+
+.exercise{
+    margin-bottom: $default-spacing;
+    padding-bottom: $default-spacing/2;
+    border-bottom: 1px solid $gray-300;
+
+    &__title{
+        margin-bottom: $default-spacing/2;
+    }
+
+    &__detail{
+        text-align: center;
+        line-height: 1em;
+
+        span{
+            display: block;
+        }
+
+        &-value{
+            display: block;
+            margin-bottom: $default-spacing/2;
+        }
+
+        &-label{
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    
+    //Background color in the top of the app
+    &:before{
+        content: "";
+        z-index: -1;
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: $header-height + ($default-spacing*1.5);
+        background: $primary;
+    }
+}
+
+.container{
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.page-container{
+    min-height: 100vh;
+    transition: all .5s cubic-bezier(.55,0,.1,1);
+    padding-bottom: $header-nav-height*1.5;
+}
+
+.status{
+    &__container{
+        position: fixed;
+        top:0; bottom:0;
+        left:0; right:0;
+        background: #fff;
+        
+        transition: all .5s cubic-bezier(.55,0,.1,1);
+    }
+
+    &__content{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 100%;
+        padding: 0 $default-spacing*2;
+        text-align: center;
+    }
+}

@@ -1,0 +1,32 @@
+
+//Custom variables and bootstrap variables overrides
+@import "./_custom-variables.scss";
+
+//Bootstrap
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_utilities.scss";
+
+//Bootstrap Modules
+@import "~bootstrap/scss/_reboot.scss";
+@import "~bootstrap/scss/_buttons.scss";
+@import "~bootstrap/scss/_forms.scss";
+@import "~bootstrap/scss/_grid.scss";
+@import "~bootstrap/scss/_type.scss";
+
+
+
+//Base
+@import "./base/_base.scss";
+@import "./base/_icons.scss";
+@import "./base/_transitions.scss";
+@import "./base/_utilities.scss";
+
+
+//Modules
+@import "./exercises/_exercises.scss";
+@import "./header/_header.scss";
+@import "./nav/_nav.scss";
+@import "./forms/_forms.scss";
+

@@ -7,6 +7,8 @@
     color: $gray-700;
     border-top: 1px solid $border-gray-light;
     background: rgba($white, 0.9);
+    //iPhone X padding bottom
+    padding-bottom: env(safe-area-inset-bottom); 
 
     &__item{
         display: flex;

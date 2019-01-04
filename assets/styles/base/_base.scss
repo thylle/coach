@@ -4,17 +4,7 @@
 
 body{
     
-    //Background color in the top of the app
-    &:before{
-        content: "";
-        z-index: -1;
-        position: absolute;
-        top:0;
-        left:0;
-        width: 100%;
-        height: $header-height + ($default-spacing*1.5);
-        background: $primary;
-    }
+    
 }
 
 .container{
@@ -25,7 +15,39 @@ body{
 .page-container{
     min-height: 100vh;
     transition: all .5s cubic-bezier(.55,0,.1,1);
-    padding-bottom: $header-nav-height*1.5;
+    padding-bottom: $nav-bar-height + $default-spacing; //+ default-spacing for iphoneX
+    -webkit-overflow-scrolling: touch; //smooth scroll
+
+    .no-header{
+        padding-top: $default-spacing;
+    }
+}
+
+.onboarding{
+    padding: $default-spacing;
+    padding-top: $header-height/2;
+    color: $primary;
+    text-align: center;
+    background: $white;
+
+    &-btn{
+        height: auto !important;
+        font-size: 1.4em;
+        padding: 1rem 2.5rem !important;
+        color: $white;
+        margin-bottom: $default-spacing/2;
+        border: 0;
+        background: $primary;
+
+        &-success{
+            color: $white;
+            background: $success; 
+        }
+
+        &:hover{
+            color: $white;
+        }
+    }
 }
 
 .status{
@@ -34,7 +56,6 @@ body{
         top:0; bottom:0;
         left:0; right:0;
         background: #fff;
-        
         transition: all .5s cubic-bezier(.55,0,.1,1);
     }
 

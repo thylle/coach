@@ -4,6 +4,18 @@
     text-align: center;
     color: $white;
 
+    //Background color in the top of the app
+    &:before{
+        content: "";
+        z-index: -1;
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: $header-height + ($default-spacing*1.5);
+        background: $primary;
+    }
+
     &__title{
         margin: 0 0 $default-spacing/8;
         font-size: $h1-font-size;
@@ -13,6 +25,11 @@
     &__byline{
         opacity: 0.8;
         margin-bottom: $default-spacing;
+    }
+
+    a{
+        color: inherit;
+        text-decoration: underline;
     }
 }
 

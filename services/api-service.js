@@ -26,16 +26,26 @@ export default class APIService {
   getUsersByCoach(coachId) {
     return new Promise((resolve, reject) => {
       let ref = Database.ref("users")
-      .orderByChild("coachId")
+      .orderByChild("coach/id")
       .equalTo(coachId)
+      
 
       ref.once("value", data => {
         let result = data.val();
 
-        console.log("getUsersByCoach result", result);
+        if (result != null) {
+          let resultAsArray = Object.entries(result).map(e => Object.assign(e[1], { key: e[0] }));
+          
+          //sort by name
+          resultAsArray.sort(function(a, b){
+              if(a.name < b.name) return -1;
+              if(a.name > b.name) return 1;
+              return 0;
+          })
+
+          console.log("getUsersByCoach result", resultAsArray);
   
-        if (result != null) {  
-          resolve(result);
+          resolve(resultAsArray);
         }
         else{
           reject();
@@ -45,112 +55,69 @@ export default class APIService {
   }
 
 
-  getUserById(store, userId) {
-    let ref = Database.ref("users/" + userId);
 
-    ref.once("value", data => {
-      let result = data.val();
-      if (result != null) {
-        let coachId = result.coachId;
 
-        this.getCoachById(coachId).then((coach) => {
-          result.coach = coach;
-          store.commit('SET_CURRENTUSER', result)
 
-          //TODO add LS name to config
-          let localStorageName = "coach-app-current-user";
-          LS.setLocalStorage(localStorageName, result)
+  getUserById(userId) {
+    return new Promise((resolve, reject) => {
+      let ref = Database.ref("users/" + userId);
 
-          //Hide loading
+      ref.once("value", data => {
+        let result = data.val();
+
+        if (result != null) {
+          resolve(result)
+        } 
+        else {
+          reject("error getting user by id");
+        }
+      });
+
+    });
+  }
+
+
+  old_getUserById(store, userId) {
+    return new Promise((resolve, reject) => {
+      let ref = Database.ref("users/" + userId);
+
+      ref.once("value", data => {
+        let result = data.val();
+        if (result != null) {
+          let coachId = result.coachId;
+
+          this.getCoachById(coachId).then((coach) => {
+            result.coach = coach;
+            store.commit('SET_CURRENTUSER', result)
+
+            //TODO add LS name to config
+            let localStorageName = "coach-app-current-user";
+            LS.setLocalStorage(localStorageName, result)
+
+            //Hide loading
+            store.state.status.loading = false;
+
+            resolve();
+
+          }).catch(() => {
+            alert("error getting coach by id: " + coachId)
+            reject();
+          });        
+        } 
+        else {
+          //TODO Error message
           store.state.status.loading = false;
+          store.state.status.error = true;
+          store.state.status.title = "Error getting user";
 
-        }).catch(() => {
-          alert("error getting coach by id: " + coachId)
-        });        
-      } 
-      else {
-        //TODO Error message
-        store.state.status.loading = false;
-        store.state.status.error = true;
-        store.state.status.title = "Error getting user";
+          setTimeout(() => {
+            store.state.status.error = false;
+          },1500);
 
-        setTimeout(() => {
-          store.state.status.error = false;
-        },1500);
-      }
-    });
-  }
-
-
-  //Create User
-  createUser(userId, coachId) {
-    return new Promise((resolve, reject) => {
-      let refName = "users/" + userId;
-      let ref = Database.ref(refName);
-      let newItem = {
-        id: userId,
-        coachId: coachId,
-        phone: userId,
-        profileComplete: false,
-        programs: null
-      }
-
-      ref.set(newItem).then(() => {
-        resolve();
-        console.log("new user created", newItem);
-      })
-      .catch((error) => {
-        reject(error);
+          reject();
+        }
       });
-    });
-  }
 
-
-  //Add User Data
-  addUserData(currentUser) {
-    console.log("currentUser api", currentUser);
-
-    return new Promise((resolve, reject) => {
-      let refName = "users/" + currentUser.id;
-      let ref = Database.ref(refName);
-      let newItem = {
-        name: currentUser.name,
-        email: currentUser.email,
-        bday: currentUser.bday,
-        bmonth: currentUser.bmonth,
-        byear: currentUser.byear,
-        weight: currentUser.weight,
-        height: currentUser.height,
-        gender: currentUser.gender,
-        profileComplete: true
-      }
-
-      ref.update(newItem).then(() => {
-        console.log("user data added", newItem);
-        resolve();
-      })
-      .catch((error) => {
-        reject(error);
-      });
-    });
-  }
-
-
-  //Add data to firebase database
-  addToDB(ref, newItem) {
-    return new Promise((resolve, reject) => {
-      ref.set(newItem).then(() => {
-        ref.once('value').then((snapshot) => {
-          let newItem = snapshot.val();
-
-          console.log("new item added...", newItem);
-
-          resolve(newItem);
-        });
-      })
-      .catch((error) => {
-        reject(error);
-      });
     });
   }
 }

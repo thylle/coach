@@ -12,5 +12,11 @@
     "step2Desc": "... but it seems we need a little more from you",
     "step3": "Your programs",
     "step3Desc": "The programs you and your coach made is right here"
+  },
+  "home": {
+    "intro": "Get started",
+    "introDesc": "Join thousands of iron lifting souls and reach your goals with a easy workout tracker",
+    "title": "Who are you",
+    "titleDesc": "... choose what you need to do"
   }
 }

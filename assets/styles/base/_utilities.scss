@@ -35,6 +35,8 @@
     text-align: center;
 }
 
+
+
 .rounded-image{
     width: 60px;
     height: 60px;
@@ -71,19 +73,21 @@
     }
 
     &--link{
-        &:before{
-            @include icon-arrow-right;
-            position: absolute;
-            top: 50%;
-            right: $default-spacing;
-            transform: translateY(-50%);
-            width: 1em;
-            height: 1em;
-            line-height: 1em;
-            font-size: $icon-size;
-            text-align: center;
-            color: $secondary;
-        }
+        cursor: pointer;
+
+        // &:before{
+        //     @include icon-arrow-right;
+        //     position: absolute;
+        //     top: 50%;
+        //     right: $default-spacing;
+        //     transform: translateY(-50%);
+        //     width: 1em;
+        //     height: 1em;
+        //     line-height: 1em;
+        //     font-size: $icon-size;
+        //     text-align: center;
+        //     color: $secondary;
+        // }
     }
 
     &__header{

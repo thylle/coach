@@ -6,8 +6,12 @@
     "french": "Dansk version"
   },
   "home": {
-    "title": "velkommen",
-    "introduction": "Introduktion"
+    "intro": "Vælg hvem du er",
+    "introDesc": "Lad os komme ingang"
+  },
+  "user": {
+    "intro": "Vælg hvem du er",
+    "introDesc": "Lad os komme ingang"
   },
   "about": {
     "title": "om os",

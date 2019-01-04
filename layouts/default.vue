@@ -8,17 +8,18 @@
     <nuxt/>
 
     <!-- Global nav bar -->
-    <nav class="nav-bar">
-      <nuxt-link class="nav-bar__item" to="/">
+    <nav class="nav-bar" v-if="currentUser">
+      <!-- <nuxt-link class="nav-bar__item" to="/">
         <span class="icon icon-dumbbell"></span>
-      </nuxt-link>
-      <nuxt-link class="nav-bar__item" to="/coach">
-        <span class="icon icon-lock"></span>
-        <!-- <span>Exercises</span> -->
-      </nuxt-link>
-
+      </nuxt-link> -->
       <button class="nav-bar__item" @click="clearLocalStorage()">
         <span class="icon icon-trash2"></span>
+        <!-- <small>Clear storage</small> -->
+      </button>
+      
+      <button class="nav-bar__item" @click="logOut()">
+        <span class="icon icon-lock"></span>
+        <!-- <small>Log out</small> -->
       </button>
       
       <!-- <button class="nav-bar__item  nav-bar__item--highlight" v-on:click="openNewExerciseDialog()">
@@ -38,7 +39,9 @@
 </template>
 
 <script>
-
+import Config from '~/config.js'
+import LSService from "~/services/local-storage-service.js";
+const LS = new LSService();
 
 export default {
   computed: {
@@ -53,6 +56,11 @@ export default {
   methods: {
     routeBack(){
       history.back();
+    },
+
+    logOut(){
+      LS.setLocalStorage(Config.lsCurrentUser, null)
+      this.$router.push({path: '/'})
     },
 
     clearLocalStorage() {

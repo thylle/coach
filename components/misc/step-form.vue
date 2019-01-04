@@ -52,7 +52,11 @@
 
 <script>
 import APIService from "~/services/api-service.js";
+import APICreateService from "~/services/api-create-service.js";
+import LSService from "~/services/local-storage-service.js";
 const API = new APIService();
+const APICreate = new APICreateService();
+const LS = new LSService();
 
 export default {
   data() {
@@ -68,6 +72,9 @@ export default {
     status() {
       return this.$store.getters.status;
     },
+    coach() {
+      return this.$store.state.coach;
+    },
     currentUser() {
       return this.$store.state.currentUser;
     }
@@ -77,10 +84,30 @@ export default {
     getUser() {
       console.log("get user by id", this.userId);
 
-      API.getUserById(this.$store, this.userId);
+      API.getUserById(this.userId).then((result) =>{
+        
+        //TODO Move to one function... (Index "mounted")
+        let userId = result.id;
+        let coachId = result.coachId;
+
+        API.getCoachById(coachId).then((coach) => {
+          result.coach = coach;
+          this.$store.commit('SET_CURRENTUSER', result)
+
+          //TODO add LS name to config
+          let localStorageName = "coach-app-current-user";
+          LS.setLocalStorage(localStorageName, result)
+
+          this.$router.push({path: '/user/' + userId})
+
+        }).catch((e) => {
+          console.error("STEP FORM > error getting coach by id: " + coachId, e)
+        });       
+      }).catch((e) =>{
+        console.error("STEP FORM > error getting user by id: " + userId + " //", e)
+      });
     },
     addUserData() {
-
       //Show error message if no gender is selected
       if(!this.currentUser.gender){
         this.formInvalid = "We need to know if you are a male or female"
@@ -89,9 +116,14 @@ export default {
 
       console.log("add user data", this.currentUser);
 
-      API.addUserData(this.currentUser).then(() => {
+      APICreate.addUserData(this.currentUser).then(() => {
         this.currentUser.profileComplete = true;
         this.$store.commit("SET_CURRENTUSER", this.currentUser);
+
+        //TODO add LS name to config
+        let localStorageName = "coach-app-current-user";
+        LS.setLocalStorage(localStorageName, this.currentUser)
+
         console.log("***** profile complete *****");
       });
     }
